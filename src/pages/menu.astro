@@ -31,13 +31,13 @@ const courses = ['I', 'II', 'III', 'IV', 'V', 'VI'];
     min-height: 100vh;
     position: relative;
     overflow: hidden;
-    padding: 1.25rem 1rem;
+    padding: 2rem 1rem 1.25rem;
     isolation: isolate;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     background:
-      radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, 0.45) 100%),
       url('/menu%20background.jpg') center/cover no-repeat,
       #000;
   }
@@ -45,12 +45,14 @@ const courses = ['I', 'II', 'III', 'IV', 'V', 'VI'];
   .menu-inner {
     position: relative;
     z-index: 2;
+    flex: 1;
+    min-height: 0;
     width: 100%;
     max-width: 360px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.85rem;
+    gap: 1rem;
   }
 
   .theme {
@@ -68,29 +70,30 @@ const courses = ['I', 'II', 'III', 'IV', 'V', 'VI'];
   }
 
   .paper {
-    background: rgba(255, 255, 255, 0.82);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(42, 36, 31, 0.14);
+    flex: 1;
+    min-height: 0;
+    background: rgba(10, 8, 6, 0.42);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(245, 239, 230, 0.12);
     border-radius: 2px;
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.55) inset,
-      0 18px 48px -24px rgba(0, 0, 0, 0.65);
-    padding: 0.9rem 1.5rem;
+    box-shadow: 0 18px 48px -24px rgba(0, 0, 0, 0.7);
+    padding: 1rem 1.5rem;
     width: 100%;
     display: flex;
     flex-direction: column;
   }
 
   .course {
-    padding: 0.45rem 0;
+    flex: 1;
+    min-height: 0;
     text-align: center;
     display: flex;
-    flex-direction: row;
-    align-items: baseline;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 0.6rem;
-    border-bottom: 1px solid rgba(42, 36, 31, 0.08);
+    gap: 0.35rem;
+    border-bottom: 1px solid rgba(245, 239, 230, 0.1);
   }
 
   .course:last-child {
@@ -99,11 +102,11 @@ const courses = ['I', 'II', 'III', 'IV', 'V', 'VI'];
 
   .course-label {
     font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 400;
     font-style: italic;
     letter-spacing: 0.04em;
-    color: var(--ink-dark);
+    color: #f5efe6;
     line-height: 1.1;
   }
 
@@ -111,9 +114,9 @@ const courses = ['I', 'II', 'III', 'IV', 'V', 'VI'];
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 300;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     line-height: 1;
-    color: var(--ink-dark);
+    color: #f5efe6;
     opacity: 0.55;
   }
 
