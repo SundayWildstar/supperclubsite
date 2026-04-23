@@ -1,0 +1,241 @@
+---
+interface Props {
+  tone?: 'dark' | 'light';
+}
+
+const { tone = 'dark' } = Astro.props;
+
+const vines = [
+  { pos: 'bl', size: 58, delay: 0.2 },
+  { pos: 'tr', size: 52, delay: 1.4 },
+  { pos: 'br', size: 54, delay: 2.6 },
+  { pos: 'tl', size: 48, delay: 1.9 },
+  { pos: 'lm', size: 40, delay: 3.3 },
+  { pos: 'rm', size: 42, delay: 2.9 },
+];
+
+const leaves = [
+  { x: 50, y: 320, rot: -48, delay: 1.0 },
+  { x: 72, y: 262, rot: 32, delay: 1.7 },
+  { x: 130, y: 218, rot: -34, delay: 2.4 },
+  { x: 155, y: 172, rot: 38, delay: 3.0 },
+  { x: 168, y: 108, rot: -30, delay: 3.65 },
+  { x: 232, y: 58, rot: 26, delay: 4.2 },
+];
+
+const bloomDelay = 5.1;
+---
+
+<div class={`vine-field tone-${tone}`} aria-hidden="true">
+  {
+    vines.map((v) => (
+      <div
+        class={`vine vine-${v.pos}`}
+        style={`--delay:${v.delay}s; width:${v.size}vmin; height:${v.size}vmin;`}
+      >
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <path
+            class="stem"
+            pathLength="100"
+            d="M 10,392 C 30,342 52,322 62,282 C 72,242 122,232 142,192 C 162,152 142,112 172,82 C 200,54 240,52 290,42"
+          />
+
+          {leaves.map((l) => (
+            <g class="leaf" transform={`translate(${l.x} ${l.y}) rotate(${l.rot})`}>
+              <g class="leaf-scale" style={`--leaf-delay:${l.delay}s;`}>
+                <path class="leaf-shape" d="M 0,0 C 4,-11 18,-13 24,-6 C 19,-2 7,3 0,0 Z" />
+                <path class="leaf-vein" d="M 1,-1 Q 13,-8 23,-6" fill="none" />
+              </g>
+            </g>
+          ))}
+
+          <g class="bloom" transform="translate(290 42)">
+            <g class="bloom-scale" style={`--bloom-delay:${bloomDelay}s;`}>
+              <ellipse class="petal" cx="0" cy="-10" rx="5" ry="10" transform="rotate(0)" />
+              <ellipse class="petal" cx="0" cy="-10" rx="5" ry="10" transform="rotate(72)" />
+              <ellipse class="petal" cx="0" cy="-10" rx="5" ry="10" transform="rotate(144)" />
+              <ellipse class="petal" cx="0" cy="-10" rx="5" ry="10" transform="rotate(216)" />
+              <ellipse class="petal" cx="0" cy="-10" rx="5" ry="10" transform="rotate(288)" />
+              <circle class="bud" cx="0" cy="0" r="3.6" />
+              <circle class="bud-core" cx="0" cy="0" r="1.6" />
+            </g>
+          </g>
+        </svg>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .vine-field {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .vine-field.tone-dark {
+    --stem-color: #8cae7d;
+    --leaf-color: #7ba07c;
+    --leaf-vein: #3f5f41;
+    --petal-color: #f5efe6;
+    --petal-alt: #f1e3c2;
+    --bud-color: #c9a96e;
+    --bud-core: #8d6d38;
+    --foliage-opacity: 0.82;
+  }
+
+  .vine-field.tone-light {
+    --stem-color: #4f6a51;
+    --leaf-color: #5d8460;
+    --leaf-vein: #2e4730;
+    --petal-color: #d7a6a1;
+    --petal-alt: #b9a7cf;
+    --bud-color: #c9a96e;
+    --bud-core: #8d6d38;
+    --foliage-opacity: 0.58;
+  }
+
+  .vine {
+    position: absolute;
+    transform-origin: center;
+  }
+
+  .vine svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+  }
+
+  .vine-bl {
+    bottom: -5vmin;
+    left: -5vmin;
+  }
+  .vine-tr {
+    top: -5vmin;
+    right: -5vmin;
+    transform: rotate(180deg);
+  }
+  .vine-br {
+    bottom: -5vmin;
+    right: -5vmin;
+    transform: scaleX(-1);
+  }
+  .vine-tl {
+    top: -5vmin;
+    left: -5vmin;
+    transform: scaleY(-1);
+  }
+  .vine-lm {
+    top: 26vh;
+    left: -7vmin;
+    transform: rotate(18deg);
+  }
+  .vine-rm {
+    top: 46vh;
+    right: -7vmin;
+    transform: rotate(200deg);
+  }
+
+  .stem {
+    fill: none;
+    stroke: var(--stem-color);
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    opacity: var(--foliage-opacity);
+    animation: stem-grow 5s cubic-bezier(0.3, 0.4, 0.3, 1) forwards;
+    animation-delay: var(--delay, 0s);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.18));
+  }
+
+  @keyframes stem-grow {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .leaf-scale {
+    opacity: 0;
+    transform: scale(0);
+    transform-box: fill-box;
+    transform-origin: 0% 50%;
+    animation: leaf-in 0.9s cubic-bezier(0.2, 0.85, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0s) + var(--leaf-delay, 1s));
+  }
+
+  .leaf-shape {
+    fill: var(--leaf-color);
+    opacity: var(--foliage-opacity);
+  }
+
+  .leaf-vein {
+    stroke: var(--leaf-vein);
+    stroke-width: 0.6;
+    opacity: calc(var(--foliage-opacity) - 0.1);
+  }
+
+  @keyframes leaf-in {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .bloom-scale {
+    opacity: 0;
+    transform: scale(0) rotate(-36deg);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: bloom-open 1.6s cubic-bezier(0.25, 0.9, 0.35, 1.15) forwards;
+    animation-delay: calc(var(--delay, 0s) + var(--bloom-delay, 5s));
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
+  }
+
+  .petal {
+    fill: var(--petal-color);
+  }
+
+  .petal:nth-child(even) {
+    fill: var(--petal-alt);
+  }
+
+  .bud {
+    fill: var(--bud-color);
+  }
+
+  .bud-core {
+    fill: var(--bud-core);
+  }
+
+  @keyframes bloom-open {
+    0% {
+      opacity: 0;
+      transform: scale(0) rotate(-36deg);
+    }
+    65% {
+      opacity: 1;
+      transform: scale(1.1) rotate(4deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stem {
+      stroke-dashoffset: 0;
+      animation: none;
+    }
+    .leaf-scale,
+    .bloom-scale {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+</style>

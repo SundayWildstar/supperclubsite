@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Logo from '../components/Logo.astro';
+import Dust from '../components/Dust.astro';
+
+const registerUrl = 'https://forms.gle/nNkxtrpV7f1RcJBL7';
+---
+
+<Layout title="Supper Club — Metamorphosis">
+  <main class="home">
+    <Dust count={30} />
+    <div class="stack">
+      <div class="mark">
+        <Logo variant="mark" />
+      </div>
+      <h1 class="theme">Metamorphosis</h1>
+      <div class="hairline" aria-hidden="true"></div>
+      <div class="actions">
+        <a class="btn" href={registerUrl} target="_blank" rel="noopener noreferrer">Register</a>
+        <a class="btn" href="/menu">Menu</a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .home {
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 3rem 1.5rem;
+    background:
+      linear-gradient(180deg, rgba(11, 20, 15, 0.22) 0%, rgba(5, 10, 7, 0.52) 100%),
+      url('/flowers%20background.jfif') center/cover no-repeat,
+      var(--bg-dark);
+    isolation: isolate;
+  }
+
+  .stack {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+    text-align: center;
+  }
+
+  .mark {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .theme {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: clamp(3rem, 10vw, 7rem);
+    letter-spacing: 0.01em;
+    line-height: 1;
+    color: #f5efe6;
+    margin: 0;
+  }
+
+  .hairline {
+    width: min(260px, 60vw);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245, 239, 230, 0.42), transparent);
+    margin: 0.25rem 0 0.5rem;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+    width: min(320px, 72vw);
+    margin-top: 0.75rem;
+  }
+
+  .btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    border: 1px solid rgba(245, 239, 230, 0.38);
+    color: var(--ink);
+    text-align: center;
+    transition:
+      border-color 320ms ease,
+      color 320ms ease,
+      background 320ms ease,
+      letter-spacing 320ms ease;
+  }
+
+  .btn:hover,
+  .btn:focus-visible {
+    border-color: rgba(245, 239, 230, 0.85);
+    color: #ffffff;
+    letter-spacing: 0.48em;
+    outline: none;
+  }
+
+  @media (max-width: 480px) {
+    .btn {
+      padding: 0.9rem 1.4rem;
+      letter-spacing: 0.32em;
+    }
+    .btn:hover,
+    .btn:focus-visible {
+      letter-spacing: 0.38em;
+    }
+  }
+</style>

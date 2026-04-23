@@ -1,0 +1,32 @@
+---
+interface Props {
+  variant?: 'hero' | 'mark';
+}
+const { variant = 'hero' } = Astro.props;
+---
+
+<img
+  src="/logo.svg"
+  alt="Supper Club"
+  width="595"
+  height="842"
+  class={`supper-logo ${variant}`}
+  decoding="async"
+/>
+
+<style>
+  .supper-logo {
+    display: block;
+    width: auto;
+    max-width: 80vw;
+    object-fit: contain;
+  }
+  .supper-logo.hero {
+    height: clamp(340px, 60vmin, 640px);
+    filter: drop-shadow(0 14px 36px rgba(0, 0, 0, 0.55));
+  }
+  .supper-logo.mark {
+    height: clamp(200px, 34vmin, 380px);
+    filter: drop-shadow(0 10px 26px rgba(0, 0, 0, 0.55));
+  }
+</style>

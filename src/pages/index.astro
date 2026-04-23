@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Vines from '../components/Vines.astro';
+import Logo from '../components/Logo.astro';
+---
+
+<Layout title="Supper Club — Enter">
+  <a href="/home" class="landing" aria-label="Enter the supper club">
+    <Vines tone="dark" />
+    <div class="landing-center">
+      <div class="logo-hover">
+        <Logo />
+      </div>
+      <p class="enter-cue">Click to enter</p>
+    </div>
+  </a>
+</Layout>
+
+<style>
+  .landing {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    isolation: isolate;
+  }
+
+  .landing::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 45%, rgba(201, 169, 110, 0.08), transparent 55%),
+      radial-gradient(circle at 15% 85%, rgba(107, 143, 108, 0.08), transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .landing-center {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.25rem;
+  }
+
+  .logo-hover {
+    animation: float 5.5s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .enter-cue {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--ink-muted);
+    opacity: 0;
+    animation:
+      fade-in 1.2s ease-out 1.4s forwards,
+      breathe 3.2s ease-in-out 2.6s infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(-6px) rotate(-0.6deg);
+    }
+    50% {
+      transform: translateY(8px) rotate(0.6deg);
+    }
+  }
+
+  @keyframes fade-in {
+    to {
+      opacity: 0.82;
+    }
+  }
+
+  @keyframes breathe {
+    0%,
+    100% {
+      opacity: 0.82;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-hover {
+      animation: none;
+    }
+    .enter-cue {
+      animation: none;
+      opacity: 0.82;
+    }
+  }
+</style>
