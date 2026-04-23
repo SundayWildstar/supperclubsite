@@ -29,8 +29,9 @@ import Logo from '../components/Logo.astro';
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at 50% 45%, rgba(201, 169, 110, 0.08), transparent 55%),
-      radial-gradient(circle at 15% 85%, rgba(107, 143, 108, 0.08), transparent 60%);
+      radial-gradient(ellipse at 30% 20%, rgba(180, 210, 155, 0.35) 0%, transparent 48%),
+      radial-gradient(ellipse at 78% 85%, rgba(10, 22, 12, 0.6) 0%, transparent 55%),
+      linear-gradient(160deg, #1a2a1b 0%, #3d5a3f 28%, #6b8f6c 52%, #395640 75%, #12201a 100%);
     pointer-events: none;
     z-index: 1;
   }
@@ -78,7 +79,7 @@ import Logo from '../components/Logo.astro';
     letter-spacing: 0.42em;
     text-transform: uppercase;
     text-indent: 0.42em;
-    color: var(--ink-muted);
+    color: #ffffff;
     opacity: 0;
     animation:
       fade-in 1.2s ease-out 1.4s forwards,

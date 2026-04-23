@@ -14,7 +14,6 @@ const registerUrl = 'https://forms.gle/nNkxtrpV7f1RcJBL7';
         <Logo variant="mark" white />
       </div>
       <h1 class="theme">Metamorphosis</h1>
-      <div class="hairline" aria-hidden="true"></div>
       <div class="actions">
         <div class="btn-wrap">
           <svg class="btn-vine left" viewBox="0 0 80 40" aria-hidden="true">
@@ -86,8 +85,10 @@ const registerUrl = 'https://forms.gle/nNkxtrpV7f1RcJBL7';
     min-height: 100vh;
     overflow: hidden;
     display: grid;
-    place-items: center;
-    padding: 1.5rem 1rem;
+    grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
+    justify-items: center;
+    padding: 1rem;
+    text-align: center;
     background:
       linear-gradient(180deg, rgba(11, 20, 15, 0.22) 0%, rgba(5, 10, 7, 0.52) 100%),
       url('/flowers%20background.jfif') center/cover no-repeat,
@@ -96,32 +97,32 @@ const registerUrl = 'https://forms.gle/nNkxtrpV7f1RcJBL7';
   }
 
   .stack {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.75rem;
-    text-align: center;
+    display: contents;
   }
 
   .stack > .mark,
   .stack > .theme,
   .stack > .actions {
+    position: relative;
+    z-index: 2;
     opacity: 0;
     transform: translateY(28px);
     animation: enter 1.4s cubic-bezier(0.22, 0.68, 0.2, 1) forwards;
   }
 
   .stack > .mark {
+    align-self: end;
     animation-delay: 180ms;
   }
 
   .stack > .theme {
+    align-self: center;
     animation-delay: 560ms;
   }
 
   .stack > .actions {
+    align-self: start;
+    margin-top: 1rem;
     animation-delay: 960ms;
   }
 
@@ -143,34 +144,8 @@ const registerUrl = 'https://forms.gle/nNkxtrpV7f1RcJBL7';
   }
 
   .mark {
-    position: relative;
     display: flex;
     justify-content: center;
-    margin-bottom: -5.25rem;
-    isolation: isolate;
-  }
-
-  .mark::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 72%;
-    height: 56%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background: radial-gradient(
-      ellipse at center,
-      rgba(5, 10, 7, 0.5) 0%,
-      rgba(5, 10, 7, 0.28) 45%,
-      transparent 76%
-    );
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 28%, transparent 70%);
-    mask-image: radial-gradient(ellipse at center, black 28%, transparent 70%);
-    pointer-events: none;
-    z-index: -1;
   }
 
   .theme {
@@ -185,13 +160,6 @@ const registerUrl = 'https://forms.gle/nNkxtrpV7f1RcJBL7';
     margin: 0;
     /* compensate for trailing letter-spacing so the word stays optically centered */
     text-indent: 0.18em;
-  }
-
-  .hairline {
-    width: min(260px, 60vw);
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(245, 239, 230, 0.42), transparent);
-    margin: 0.25rem 0 0.5rem;
   }
 
   .actions {

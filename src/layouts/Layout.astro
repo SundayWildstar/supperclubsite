@@ -114,4 +114,31 @@ const { title, tone = 'dark' } = Astro.props;
   .serif {
     font-family: 'Cormorant Garamond', 'Times New Roman', serif;
   }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 1400ms;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(root) {
+    animation-name: sc-fade-out;
+  }
+
+  ::view-transition-new(root) {
+    animation-name: sc-fade-in;
+  }
+
+  @keyframes sc-fade-out {
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes sc-fade-in {
+    from {
+      opacity: 0;
+    }
+  }
 </style>
