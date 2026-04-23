@@ -1,12 +1,14 @@
 ---
 interface Props {
   variant?: 'hero' | 'mark';
+  white?: boolean;
 }
-const { variant = 'hero' } = Astro.props;
+const { variant = 'hero', white = false } = Astro.props;
+const src = white ? '/white logo.svg' : '/logo.svg';
 ---
 
 <img
-  src="/logo.svg"
+  src={src}
   alt="Supper Club"
   width="595"
   height="842"
@@ -26,7 +28,7 @@ const { variant = 'hero' } = Astro.props;
     filter: drop-shadow(0 14px 36px rgba(0, 0, 0, 0.55));
   }
   .supper-logo.mark {
-    height: clamp(200px, 34vmin, 380px);
-    filter: drop-shadow(0 10px 26px rgba(0, 0, 0, 0.55));
+    height: clamp(340px, 58vmin, 620px);
+    filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.6));
   }
 </style>

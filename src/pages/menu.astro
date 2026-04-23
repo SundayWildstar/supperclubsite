@@ -1,22 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Vines from '../components/Vines.astro';
 
 const courses = ['I', 'II', 'III', 'IV', 'V', 'VI'];
 ---
 
 <Layout title="Supper Club — The Menu" tone="light">
   <main class="menu">
-    <Vines tone="light" />
     <div class="menu-inner">
       <header class="menu-header">
-        <p class="eyebrow">Metamorphosis</p>
-        <h1>The Menu</h1>
-        <div class="hairline" aria-hidden="true"></div>
-        <p class="teaser">Six courses. Unveiled soon.</p>
+        <h1 class="theme">Metamorphosis</h1>
       </header>
 
-      <div class="courses">
+      <section class="paper">
         {
           courses.map((num) => (
             <article class="course">
@@ -25,7 +20,7 @@ const courses = ['I', 'II', 'III', 'IV', 'V', 'VI'];
             </article>
           ))
         }
-      </div>
+      </section>
 
       <a class="menu-back" href="/home">&larr; Back</a>
     </div>
@@ -38,16 +33,20 @@ const courses = ['I', 'II', 'III', 'IV', 'V', 'VI'];
     position: relative;
     padding: 4rem 1.5rem 5rem;
     isolation: isolate;
+    background:
+      linear-gradient(180deg, rgba(251, 246, 237, 0.55) 0%, rgba(246, 236, 238, 0.65) 100%),
+      url('/menu%20background.jpg') center/cover no-repeat;
   }
 
   .menu-inner {
     position: relative;
     z-index: 2;
-    max-width: 920px;
+    max-width: 640px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2.5rem;
+    align-items: center;
   }
 
   .menu-header {
@@ -55,95 +54,79 @@ const courses = ['I', 'II', 'III', 'IV', 'V', 'VI'];
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 
-  .menu-header h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 400;
-    font-style: italic;
-    font-size: clamp(2.75rem, 7vw, 4.5rem);
-    letter-spacing: 0.01em;
+  .theme {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: clamp(2.2rem, 7vw, 5rem);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.05;
     color: var(--ink-dark);
+    margin: 0;
+    text-indent: 0.18em;
   }
 
-  .hairline {
-    width: 180px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(42, 36, 31, 0.35), transparent);
-  }
-
-  .teaser {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    color: var(--ink-dark-muted);
-  }
-
-  .courses {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.5rem;
+  .paper {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(42, 36, 31, 0.12);
+    border-radius: 2px;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.5) inset,
+      0 24px 60px -30px rgba(42, 36, 31, 0.45);
+    padding: 2.5rem 2.75rem;
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
   }
 
   .course {
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border: 1px solid rgba(42, 36, 31, 0.08);
-    border-radius: 2px;
-    padding: 2.4rem 1.25rem 2.6rem;
+    padding: 1.5rem 0;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.2rem;
-    transition: transform 420ms ease, box-shadow 420ms ease, border-color 420ms ease;
-    position: relative;
-    overflow: hidden;
+    gap: 0.85rem;
+    border-bottom: 1px solid rgba(42, 36, 31, 0.1);
   }
 
-  .course::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(215, 166, 161, 0.08), rgba(185, 167, 207, 0.08));
-    opacity: 0;
-    transition: opacity 420ms ease;
+  .course:first-child {
+    padding-top: 0.25rem;
   }
 
-  .course:hover {
-    transform: translateY(-3px);
-    border-color: rgba(185, 167, 207, 0.55);
-    box-shadow: 0 14px 30px -18px rgba(42, 36, 31, 0.3);
-  }
-
-  .course:hover::before {
-    opacity: 1;
+  .course:last-child {
+    padding-bottom: 0.25rem;
+    border-bottom: none;
   }
 
   .course-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--ink-dark-muted);
-    position: relative;
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: var(--ink-dark);
+    line-height: 1.1;
   }
 
   .course-mark {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-weight: 300;
-    font-size: 4rem;
+    font-size: 3.25rem;
     line-height: 1;
     color: var(--ink-dark);
     opacity: 0.55;
-    position: relative;
   }
 
   .menu-back {
-    align-self: center;
     font-family: 'Inter', sans-serif;
     font-size: 0.7rem;
     letter-spacing: 0.38em;
@@ -161,15 +144,9 @@ const courses = ['I', 'II', 'III', 'IV', 'V', 'VI'];
     outline: none;
   }
 
-  @media (max-width: 720px) {
-    .courses {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 420px) {
-    .courses {
-      grid-template-columns: 1fr;
+  @media (max-width: 480px) {
+    .paper {
+      padding: 2rem 1.5rem;
     }
   }
 </style>
