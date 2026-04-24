@@ -104,42 +104,19 @@ const registerUrl = 'https://forms.gle/nNkxtrpV7f1RcJBL7';
   .stack > .actions {
     position: relative;
     z-index: 2;
-    opacity: 0;
-    transform: translateY(28px);
-    animation: enter 1.4s cubic-bezier(0.22, 0.68, 0.2, 1) forwards;
   }
 
   .stack > .mark {
     align-self: end;
-    animation-delay: 180ms;
   }
 
   .stack > .theme {
     align-self: center;
-    animation-delay: 560ms;
   }
 
   .stack > .actions {
     align-self: start;
     margin-top: 1rem;
-    animation-delay: 960ms;
-  }
-
-  @keyframes enter {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .stack > .mark,
-    .stack > .theme,
-    .stack > .actions {
-      opacity: 1;
-      transform: none;
-      animation: none;
-    }
   }
 
   .mark {
