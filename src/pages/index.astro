@@ -4,7 +4,12 @@ import Logo from '../components/Logo.astro';
 ---
 
 <Layout title="Supper Club — Enter">
-  <a href="/home" class="landing" aria-label="Enter the supper club">
+  <a
+    href="/home"
+    class="landing"
+    aria-label="Enter the supper club"
+    onclick="sessionStorage.setItem('sc-entered','1')"
+  >
     <div class="landing-center">
       <div class="logo-hover">
         <Logo />

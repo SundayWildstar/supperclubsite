@@ -13,9 +13,18 @@ const socialImage = new URL('/logo-social.png', Astro.site ?? Astro.url.origin).
 <html lang="en" data-tone={tone}>
   <head>
     <script is:inline>
-      if (window.location.pathname !== '/') {
-        window.location.replace('/');
-      }
+      (function () {
+        if (window.location.pathname === '/') {
+          sessionStorage.removeItem('sc-entered');
+          return;
+        }
+        var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+        var isReload = nav && nav.type === 'reload';
+        if (isReload || !sessionStorage.getItem('sc-entered')) {
+          sessionStorage.removeItem('sc-entered');
+          window.location.replace('/');
+        }
+      })();
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
