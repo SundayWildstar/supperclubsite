@@ -31,4 +31,13 @@ const src = white ? '/white logo.svg' : '/logo.svg';
     height: clamp(340px, 62vmin, 720px);
     filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.6));
   }
+
+  @media (max-width: 640px) {
+    .supper-logo.hero {
+      filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.4));
+    }
+    .supper-logo.mark {
+      filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.45));
+    }
+  }
 </style>

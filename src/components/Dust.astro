@@ -48,11 +48,16 @@ const motes = Array.from({ length: count }, (_, i) => ({
     width: var(--size);
     height: var(--size);
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(245, 239, 230, 0.95), rgba(245, 239, 230, 0.35) 55%, transparent 100%);
-    filter: blur(var(--blur));
+    background: radial-gradient(circle, rgba(245, 239, 230, 0.9), rgba(245, 239, 230, 0.3) 55%, transparent 100%);
     opacity: 0;
     will-change: transform, opacity;
     animation: fall var(--duration) linear var(--delay) infinite;
+  }
+
+  @media (min-width: 768px) and (hover: hover) {
+    .mote {
+      filter: blur(var(--blur));
+    }
   }
 
   @keyframes fall {
