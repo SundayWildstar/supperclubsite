@@ -1,7 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { registerUrl, dinnerPrice, winePairingPrice } from '../site';
 
-const courses = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+const courses = [
+  {
+    num: 'I',
+    name: 'Philemon and Baucis',
+    detail: 'focaccia, tomato, olive, ricotta, honey, butter',
+  },
+  {
+    num: 'II',
+    name: "Midas' Touch",
+    detail: 'pomme puree, blackened onion, gold tuile',
+  },
+  {
+    num: 'III',
+    name: 'Minotaur',
+    detail: 'sirloin, quail egg, capers, twice-fried chips, porcini labyrinth',
+  },
+  { num: 'IV' },
+  { num: 'V' },
+  { num: 'VI' },
+];
 ---
 
 <Layout title="Supper Club — The Menu" tone="dark">
@@ -10,14 +30,28 @@ const courses = ['I', 'II', 'III', 'IV', 'V', 'VI'];
       <section class="paper">
         <h1 class="theme">Metamorphosis</h1>
         {
-          courses.map((num) => (
+          courses.map((course) => (
             <article class="course">
-              <p class="course-label">Course {num}</p>
-              <span class="course-mark" aria-label="To be revealed">?</span>
+              <p class="course-label">Course {course.num}</p>
+              {course.name ? (
+                <>
+                  <h2 class="course-name">{course.name}</h2>
+                  <p class="course-detail">{course.detail}</p>
+                </>
+              ) : (
+                <span class="course-mark" aria-label="To be revealed">?</span>
+              )}
             </article>
           ))
         }
       </section>
+
+      <div class="menu-register">
+        <p class="menu-price">
+          ${dinnerPrice} per dinner &middot; Optional wine pairing +${winePairingPrice}
+        </p>
+        <a class="menu-btn" href={registerUrl} target="_blank" rel="noopener noreferrer">Register</a>
+      </div>
 
       <a class="menu-back" href="/home">&larr; Back</a>
     </div>
@@ -86,6 +120,7 @@ const courses = ['I', 'II', 'III', 'IV', 'V', 'VI'];
     max-width: 340px;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
     animation: paper-in 900ms cubic-bezier(0.25, 0.6, 0.2, 1) both;
     will-change: transform, opacity;
   }
@@ -116,8 +151,7 @@ const courses = ['I', 'II', 'III', 'IV', 'V', 'VI'];
   }
 
   .course {
-    flex: 1;
-    min-height: 0;
+    flex: 1 1 auto;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -132,13 +166,36 @@ const courses = ['I', 'II', 'III', 'IV', 'V', 'VI'];
   }
 
   .course-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.55rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-indent: 0.3em;
+    text-transform: uppercase;
+    color: rgba(245, 239, 230, 0.55);
+    line-height: 1.1;
+  }
+
+  .course-name {
     font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-    font-size: 1rem;
+    font-size: clamp(1rem, 4vw, 1.15rem);
     font-weight: 400;
     font-style: italic;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
     color: #f5efe6;
-    line-height: 1.1;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  .course-detail {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-size: 0.82rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: rgba(245, 239, 230, 0.72);
+    line-height: 1.4;
+    max-width: 24ch;
+    margin: 0;
   }
 
   .course-mark {
@@ -149,6 +206,49 @@ const courses = ['I', 'II', 'III', 'IV', 'V', 'VI'];
     line-height: 1;
     color: #f5efe6;
     opacity: 0.55;
+  }
+
+  .menu-register {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+    text-align: center;
+  }
+
+  .menu-price {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(245, 239, 230, 0.75);
+    line-height: 1.6;
+  }
+
+  .menu-btn {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-size: 0.82rem;
+    font-weight: 300;
+    letter-spacing: 0.62em;
+    text-indent: 0.62em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.5rem;
+    border: 1px solid rgba(245, 239, 230, 0.38);
+    background: rgba(10, 8, 6, 0.42);
+    color: var(--ink);
+    transition:
+      border-color 320ms ease,
+      color 320ms ease;
+  }
+
+  .menu-btn:hover,
+  .menu-btn:focus-visible {
+    border-color: rgba(245, 239, 230, 0.85);
+    color: #ffffff;
+    outline: none;
   }
 
   .menu-back {
