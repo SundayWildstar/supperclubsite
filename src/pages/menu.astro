@@ -1,12 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import MenuPage from '../components/MenuPage.astro';
-import { metamorphosis } from '../dinners';
+import { grimm } from '../dinners';
 import { registerUrl, dinnerPrice, winePairingPrice } from '../site';
 ---
 
 <Layout title="Supper Club — The Menu" tone="dark">
-  <MenuPage dinner={metamorphosis} backHref="/home">
+  <MenuPage dinner={grimm} backHref="/home">
     <div class="menu-register">
       <p class="menu-price">
         ${dinnerPrice} per dinner &middot; Optional wine pairing +${winePairingPrice}
@@ -20,7 +20,7 @@ import { registerUrl, dinnerPrice, winePairingPrice } from '../site';
   .menu-register {
     flex: 0 0 auto;
     width: 100%;
-    max-width: 340px;
+    max-width: 380px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -33,30 +33,33 @@ import { registerUrl, dinnerPrice, winePairingPrice } from '../site';
     font-size: 0.6rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(245, 239, 230, 0.75);
+    color: rgba(245, 239, 230, 0.92);
     line-height: 1.6;
+    background: rgba(8, 6, 4, 0.78);
+    padding: 0.35rem 0.75rem;
   }
 
   .menu-btn {
     font-family: 'Cormorant Garamond', 'Times New Roman', serif;
     font-size: 0.82rem;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: 0.62em;
     text-indent: 0.62em;
     text-transform: uppercase;
     padding: 0.85rem 1.5rem;
-    border: 1px solid rgba(245, 239, 230, 0.38);
-    background: rgba(10, 8, 6, 0.42);
-    color: var(--ink);
+    border: 1px solid #111;
+    background: #fff;
+    color: #111;
     transition:
-      border-color 320ms ease,
+      background 320ms ease,
       color 320ms ease;
   }
 
   .menu-btn:hover,
   .menu-btn:focus-visible {
-    border-color: rgba(245, 239, 230, 0.85);
-    color: #ffffff;
+    background: #111;
+    color: #fff;
+    border-color: #fff;
     outline: none;
   }
 </style>

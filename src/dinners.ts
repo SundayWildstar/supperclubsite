@@ -7,8 +7,18 @@ export interface Course {
 export interface Dinner {
   slug: string;
   theme: string;
+  // Path under public/; defaults to the shared menu background.
+  background?: string;
   courses: Course[];
 }
+
+// Courses are revealed over time; unnamed courses show as "?".
+export const grimm: Dinner = {
+  slug: 'grimm',
+  theme: "Grimm's Fairy Tales",
+  background: '/grimm-background.jpg',
+  courses: [{ num: 'I' }, { num: 'II' }, { num: 'III' }, { num: 'IV' }, { num: 'V' }, { num: 'VI' }],
+};
 
 export const metamorphosis: Dinner = {
   slug: 'metamorphosis',
@@ -51,6 +61,7 @@ export const metamorphosis: Dinner = {
 export const prometheus: Dinner = {
   slug: 'prometheus',
   theme: 'Prometheus',
+  background: '/prometheus-background.jpg',
   courses: [
     {
       num: 'I',
