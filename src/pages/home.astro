@@ -7,6 +7,10 @@ import { registerUrl } from '../site';
 const links = [
   { label: 'Register', href: registerUrl, external: true },
   { label: 'Menu', href: '/menu' },
+];
+
+// Quieter links for people who want to learn more, kept apart from the current dinner.
+const moreLinks = [
   { label: 'Past Dinners', href: '/past' },
   { label: 'About Us', href: '/about' },
 ];
@@ -36,6 +40,18 @@ const links = [
             </div>
           ))
         }
+        <nav class="more" aria-label="Learn more">
+          {
+            moreLinks.map((link, i) => (
+              <>
+                {i > 0 && <span class="more-sep" aria-hidden="true">&middot;</span>}
+                <a class="more-link" href={link.href}>
+                  {link.label}
+                </a>
+              </>
+            ))
+          }
+        </nav>
       </div>
     </div>
   </main>
@@ -155,5 +171,39 @@ const links = [
   .btn-wrap .btn {
     display: block;
     width: 100%;
+  }
+
+  .more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+  }
+
+  .more-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.32em;
+    text-indent: 0.32em;
+    text-transform: uppercase;
+    color: rgba(245, 239, 230, 0.72);
+    padding: 0.3rem 0;
+    border-bottom: 1px solid transparent;
+    transition:
+      color 260ms ease,
+      border-color 260ms ease;
+  }
+
+  .more-link:hover,
+  .more-link:focus-visible {
+    color: #fff;
+    border-color: rgba(245, 239, 230, 0.5);
+    outline: none;
+  }
+
+  .more-sep {
+    color: rgba(245, 239, 230, 0.5);
+    font-size: 0.7rem;
   }
 </style>
