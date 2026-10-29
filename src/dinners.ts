@@ -47,11 +47,39 @@ export const metamorphosis: Dinner = {
   ],
 };
 
-// TODO: fill in the Prometheus courses; unnamed courses show as "?".
+// Course VI was never revealed on the original Prometheus site, so it stays "?".
 export const prometheus: Dinner = {
   slug: 'prometheus',
   theme: 'Prometheus',
-  courses: [{ num: 'I' }, { num: 'II' }, { num: 'III' }, { num: 'IV' }, { num: 'V' }, { num: 'VI' }],
+  courses: [
+    {
+      num: 'I',
+      name: 'Pebbles',
+      detail: 'golden potatoes, kaolin clay, ash salt, spiced aioli',
+    },
+    {
+      num: 'II',
+      name: 'Coal to Ember',
+      detail: 'popover, smoked honey, charcoal, rosemary, chili butter',
+    },
+    {
+      num: 'III',
+      name: 'Before the Flame',
+      detail: 'salmon, dry ice, yuzu gelée, chive oil, toasted scallions',
+    },
+    {
+      num: 'IV',
+      name: 'The Body',
+      detail:
+        'bone marrow brûlée, grilled pain au crystal, pickled parsley & shallots, blackberry, foie gras',
+    },
+    {
+      num: 'V',
+      name: 'The Bird',
+      detail: 'quail, blood orange, leek confit, lavender, jammy tomato',
+    },
+    { num: 'VI' },
+  ],
 };
 
 // Most recent first.
