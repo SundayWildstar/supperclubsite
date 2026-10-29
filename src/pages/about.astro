@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Fill in names as people join; an empty name shows as a dash.
+const team = [
+  { title: 'founders', name: '' },
+  { title: 'head chef', name: '' },
+  { title: 'communications lead', name: '' },
+  { title: 'sous chef', name: '' },
+  { title: 'pastry chef', name: '' },
+  { title: 'sommelier', name: '' },
+  { title: 'front of house', name: '' },
+];
+---
+
+<Layout title="Supper Club — About Us" tone="light">
+  <main class="about">
+    <section class="sheet">
+      <img class="sheet-logo" src="/logo.svg" alt="Supper Club" width="595" height="842" decoding="async" />
+      <p class="sheet-kicker">about us</p>
+      <h1 class="sheet-title">the table</h1>
+
+      <dl class="roles">
+        {
+          team.map((member) => (
+            <div class="role">
+              <dt class="role-title">{member.title}</dt>
+              <dd class="role-name">{member.name || '—'}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <a class="about-back" href="/home">&larr; Back</a>
+  </main>
+</Layout>
+
+<style>
+  .about {
+    height: 100dvh;
+    overflow-y: auto;
+    background: #ffffff;
+    color: #111;
+    padding: 1.5rem 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .sheet {
+    width: 100%;
+    max-width: 520px;
+    border: 1px solid #111;
+    padding: 1.25rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: sheet-in 900ms cubic-bezier(0.25, 0.6, 0.2, 1) both;
+  }
+
+  @keyframes sheet-in {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sheet {
+      animation: none;
+    }
+  }
+
+  /* logo.svg has generous padding baked in, so crop it with a negative margin */
+  .sheet-logo {
+    height: clamp(200px, 32vh, 280px);
+    width: auto;
+    margin: -2.25rem 0 -2.5rem;
+  }
+
+  .sheet-kicker {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.22em;
+    text-indent: 0.22em;
+    margin-top: 0.5rem;
+  }
+
+  .sheet-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 700;
+    font-size: clamp(1.9rem, 7vw, 2.5rem);
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    margin-bottom: 1.75rem;
+  }
+
+  .roles {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+  }
+
+  .role-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: clamp(1rem, 3.6vw, 1.2rem);
+    letter-spacing: 0.24em;
+    text-indent: 0.24em;
+  }
+
+  .role-name {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-size: clamp(1rem, 3.4vw, 1.1rem);
+    letter-spacing: 0.04em;
+    color: #333;
+    margin-top: 0.4rem;
+  }
+
+  .about-back {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: rgba(17, 17, 17, 0.65);
+    padding: 0.35rem 0.9rem;
+    border-bottom: 1px solid transparent;
+    transition:
+      color 260ms ease,
+      border-color 260ms ease;
+  }
+
+  .about-back:hover,
+  .about-back:focus-visible {
+    color: #000;
+    border-color: rgba(17, 17, 17, 0.45);
+    outline: none;
+  }
+</style>

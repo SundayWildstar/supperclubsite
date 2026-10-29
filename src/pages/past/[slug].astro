@@ -1,0 +1,15 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import MenuPage from '../../components/MenuPage.astro';
+import { pastDinners, type Dinner } from '../../dinners';
+
+export function getStaticPaths() {
+  return pastDinners.map((dinner) => ({ params: { slug: dinner.slug }, props: { dinner } }));
+}
+
+const { dinner } = Astro.props as { dinner: Dinner };
+---
+
+<Layout title={`Supper Club — ${dinner.theme}`} tone="dark">
+  <MenuPage dinner={dinner} backHref="/past" />
+</Layout>

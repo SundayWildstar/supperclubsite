@@ -1,225 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import MenuPage from '../components/MenuPage.astro';
+import { metamorphosis } from '../dinners';
 import { registerUrl, dinnerPrice, winePairingPrice } from '../site';
-
-const courses = [
-  {
-    num: 'I',
-    name: 'Philemon and Baucis',
-    detail: 'focaccia, tomato, olive, ricotta, honey, butter',
-  },
-  {
-    num: 'II',
-    name: "Midas' Touch",
-    detail: 'pomme purée, blackened onion, gold tuile',
-  },
-  {
-    num: 'III',
-    name: 'Minotaur',
-    detail: 'sirloin, quail egg, capers, twice-fried chips, porcini labyrinth',
-  },
-  {
-    num: 'IV',
-    name: 'Glaucus',
-    detail: 'monkfish mosaic, frozen passion fruit, fermented beurre monté, chive oil',
-  },
-  {
-    num: 'V',
-    name: 'Medusa',
-    detail: 'squid ink pasta, roe, python, stone',
-  },
-  {
-    num: 'VI',
-    name: 'Echo and Narcissus',
-    detail: 'lemon tart, cream, reflection',
-  },
-];
 ---
 
 <Layout title="Supper Club — The Menu" tone="dark">
-  <main class="menu">
-    <div class="menu-inner">
-      <section class="paper">
-        <h1 class="theme">Metamorphosis</h1>
-        {
-          courses.map((course) => (
-            <article class="course">
-              <p class="course-label">Course {course.num}</p>
-              {course.name ? (
-                <>
-                  <h2 class="course-name">{course.name}</h2>
-                  <p class="course-detail">{course.detail}</p>
-                </>
-              ) : (
-                <span class="course-mark" aria-label="To be revealed">?</span>
-              )}
-            </article>
-          ))
-        }
-      </section>
-
-      <div class="menu-register">
-        <p class="menu-price">
-          ${dinnerPrice} per dinner &middot; Optional wine pairing +${winePairingPrice}
-        </p>
-        <a class="menu-btn" href={registerUrl} target="_blank" rel="noopener noreferrer">Register</a>
-      </div>
-
-      <a class="menu-back" href="/home">&larr; Back</a>
+  <MenuPage dinner={metamorphosis} backHref="/home">
+    <div class="menu-register">
+      <p class="menu-price">
+        ${dinnerPrice} per dinner &middot; Optional wine pairing +${winePairingPrice}
+      </p>
+      <a class="menu-btn" href={registerUrl} target="_blank" rel="noopener noreferrer">Register</a>
     </div>
-  </main>
+  </MenuPage>
 </Layout>
 
 <style>
-  .menu {
-    height: 100dvh;
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
-    padding: 2rem 1rem 1.25rem;
-    isolation: isolate;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    background:
-      url('/menu%20background.jpg') center/cover no-repeat,
-      #000;
-  }
-
-  .menu-inner {
-    position: relative;
-    z-index: 2;
-    flex: 1;
-    min-height: 0;
-    width: 100%;
-    max-width: 480px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .theme {
-    flex: 0 0 auto;
-    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-    font-weight: 300;
-    font-style: normal;
-    font-size: clamp(1.1rem, 3.8vw, 1.35rem);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    line-height: 1.05;
-    color: #f5efe6;
-    margin: 0;
-    padding-bottom: 0.8rem;
-    text-indent: 0.05em;
-    text-align: center;
-    white-space: nowrap;
-    border-bottom: 1px solid rgba(245, 239, 230, 0.14);
-  }
-
-  .paper {
-    flex: 1;
-    min-height: 0;
-    background: rgba(10, 8, 6, 0.42);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border: 1px solid rgba(245, 239, 230, 0.12);
-    border-radius: 2px;
-    box-shadow: 0 18px 48px -24px rgba(0, 0, 0, 0.7);
-    padding: 1rem 1.25rem;
-    width: 100%;
-    max-width: 340px;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    animation: paper-in 900ms cubic-bezier(0.25, 0.6, 0.2, 1) both;
-    will-change: transform, opacity;
-  }
-
-  @keyframes paper-in {
-    0% {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @media (max-width: 640px) {
-    .paper {
-      backdrop-filter: blur(3px);
-      -webkit-backdrop-filter: blur(3px);
-      background: rgba(10, 8, 6, 0.55);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .paper {
-      animation: none;
-    }
-  }
-
-  .course {
-    flex: 1 1 auto;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-    border-bottom: 1px solid rgba(245, 239, 230, 0.1);
-  }
-
-  .course:last-child {
-    border-bottom: none;
-  }
-
-  .course-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.55rem;
-    font-weight: 400;
-    letter-spacing: 0.3em;
-    text-indent: 0.3em;
-    text-transform: uppercase;
-    color: rgba(245, 239, 230, 0.55);
-    line-height: 1.1;
-  }
-
-  .course-name {
-    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-    font-size: clamp(1rem, 4vw, 1.15rem);
-    font-weight: 400;
-    font-style: italic;
-    letter-spacing: 0.03em;
-    color: #f5efe6;
-    line-height: 1.15;
-    margin: 0;
-  }
-
-  .course-detail {
-    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-    font-size: 0.82rem;
-    font-weight: 300;
-    letter-spacing: 0.02em;
-    color: rgba(245, 239, 230, 0.72);
-    line-height: 1.4;
-    max-width: 24ch;
-    margin: 0;
-  }
-
-  .course-mark {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 1.15rem;
-    line-height: 1;
-    color: #f5efe6;
-    opacity: 0.55;
-  }
-
   .menu-register {
     flex: 0 0 auto;
     width: 100%;
@@ -260,26 +57,6 @@ const courses = [
   .menu-btn:focus-visible {
     border-color: rgba(245, 239, 230, 0.85);
     color: #ffffff;
-    outline: none;
-  }
-
-  .menu-back {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.62rem;
-    letter-spacing: 0.38em;
-    text-transform: uppercase;
-    color: rgba(245, 239, 230, 0.7);
-    padding: 0.35rem 0.9rem;
-    border-bottom: 1px solid transparent;
-    transition:
-      color 260ms ease,
-      border-color 260ms ease;
-  }
-
-  .menu-back:hover,
-  .menu-back:focus-visible {
-    color: #fff;
-    border-color: rgba(245, 239, 230, 0.45);
     outline: none;
   }
 </style>
