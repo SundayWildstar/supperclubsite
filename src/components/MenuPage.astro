@@ -13,7 +13,7 @@ const background = encodeURI(dinner.background ?? '/menu background.jpg');
 <main class="menu" style={`--menu-bg: url('${background}')`}>
   <div class="menu-inner">
     <section class="paper">
-      <img class="paper-logo" src="/logo.svg" alt="Supper Club" width="595" height="842" decoding="async" />
+      <img class="paper-logo" src="/white%20logo.svg" alt="Supper Club" width="595" height="842" decoding="async" />
       <p class="paper-kicker">menu</p>
       <h1 class="theme">{dinner.theme}</h1>
       {
@@ -67,17 +67,20 @@ const background = encodeURI(dinner.background ?? '/menu background.jpg');
     gap: 0.9rem;
   }
 
-  /* Solid white sheet with a thin inset frame, after the printed menu */
+  /* See-through dark glass sheet with a thin inset frame, laid out like the printed menu */
   .paper {
     flex: 1;
     min-height: 0;
     width: 100%;
     max-width: 380px;
-    background: #fff;
-    color: #111;
-    outline: 1px solid #111;
+    background: rgba(10, 8, 6, 0.42);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: #f5efe6;
+    border: 1px solid rgba(245, 239, 230, 0.12);
+    outline: 1px solid rgba(245, 239, 230, 0.35);
     outline-offset: -10px;
-    box-shadow: 0 18px 48px -18px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 18px 48px -24px rgba(0, 0, 0, 0.7);
     padding: 1.25rem 1.5rem 1.5rem;
     display: flex;
     flex-direction: column;
@@ -95,6 +98,14 @@ const background = encodeURI(dinner.background ?? '/menu background.jpg');
     100% {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .paper {
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      background: rgba(10, 8, 6, 0.55);
     }
   }
 
@@ -155,7 +166,7 @@ const background = encodeURI(dinner.background ?? '/menu background.jpg');
     font-size: clamp(0.88rem, 3.4vw, 0.98rem);
     font-weight: 400;
     letter-spacing: 0.03em;
-    color: #222;
+    color: rgba(245, 239, 230, 0.78);
     line-height: 1.35;
     max-width: 30ch;
   }
@@ -164,7 +175,7 @@ const background = encodeURI(dinner.background ?? '/menu background.jpg');
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.05rem;
     letter-spacing: 0.24em;
-    color: #111;
+    color: #f5efe6;
     opacity: 0.6;
   }
 

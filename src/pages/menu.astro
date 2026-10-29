@@ -47,19 +47,18 @@ import { registerUrl, dinnerPrice } from '../site';
     text-indent: 0.62em;
     text-transform: uppercase;
     padding: 0.85rem 1.5rem;
-    border: 1px solid #111;
-    background: #fff;
-    color: #111;
+    border: 1px solid rgba(245, 239, 230, 0.38);
+    background: rgba(10, 8, 6, 0.72);
+    color: var(--ink);
     transition:
-      background 320ms ease,
+      border-color 320ms ease,
       color 320ms ease;
   }
 
   .menu-btn:hover,
   .menu-btn:focus-visible {
-    background: #111;
-    color: #fff;
-    border-color: #fff;
+    border-color: rgba(245, 239, 230, 0.85);
+    color: #ffffff;
     outline: none;
   }
 </style>
