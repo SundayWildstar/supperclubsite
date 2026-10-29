@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Logo from '../components/Logo.astro';
 import Dust from '../components/Dust.astro';
 import { registerUrl } from '../site';
 
@@ -19,11 +18,10 @@ const moreLinks = [
 <Layout title="Supper Club — Grimm's Fairy Tales">
   <main class="home">
     <Dust count={18} />
-    <div class="stack">
-      <div class="mark">
-        <Logo variant="mark" white />
-      </div>
-      <h1 class="theme">Grimm's Fairy Tales</h1>
+    <div class="cover">
+      <img class="mark" src="/white%20logo.svg" alt="Supper Club" width="595" height="842" decoding="async" />
+      <!-- The cover art already shows the title, so keep it for screen readers only -->
+      <h1 class="sr-only">Grimm's Fairy Tales</h1>
       <div class="actions">
         {
           links.map((link) => (
@@ -62,60 +60,59 @@ const moreLinks = [
     position: relative;
     height: 100dvh;
     overflow: hidden;
-    display: grid;
-    grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
-    justify-items: center;
-    padding: 1rem;
     text-align: center;
-    background:
-      linear-gradient(180deg, rgba(11, 20, 15, 0.22) 0%, rgba(5, 10, 7, 0.52) 100%),
-      url('/flowers%20background.jfif') center/cover no-repeat,
-      #000;
+    background: #1a0706;
     isolation: isolate;
   }
 
-  .stack {
-    display: contents;
+  /* Blurred copy of the cover fills the sides on screens wider than the art */
+  .home::before {
+    content: '';
+    position: absolute;
+    inset: -40px;
+    background: url('/grimm-cover.jpg') center/cover no-repeat;
+    filter: blur(28px) brightness(0.45);
+    z-index: 0;
   }
 
-  .stack > .mark,
-  .stack > .theme,
-  .stack > .actions {
-    position: relative;
-    z-index: 2;
+  /* Full-height stage with the cover's proportions; on phones its edges crop */
+  .cover {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    aspect-ratio: 998 / 1576;
+    background: url('/grimm-cover.jpg') center/100% 100% no-repeat;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
+    z-index: 1;
   }
 
-  .stack > .mark {
-    align-self: end;
-  }
-
-  .stack > .theme {
-    align-self: center;
-  }
-
-  .stack > .actions {
-    align-self: start;
-    margin-top: 1rem;
-  }
-
+  /* Positions are fractions of the cover: its title sits at roughly 17–30% */
   .mark {
-    display: flex;
-    justify-content: center;
-    margin-bottom: calc(3.75rem - 0.44 * clamp(340px, 62vmin, 720px));
+    position: absolute;
+    left: 50%;
+    top: -8.5%;
+    height: 36%;
+    width: auto;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.7));
   }
 
-  .theme {
-    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-    font-weight: 300;
-    font-style: normal;
-    font-size: clamp(1.4rem, 7vw, 5rem);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    line-height: 1.05;
-    color: #f5efe6;
-    margin: 0;
-    /* compensate for trailing letter-spacing so the word stays optically centered */
-    text-indent: 0.18em;
+  .cover > .actions {
+    position: absolute;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 
   .actions {
@@ -124,7 +121,6 @@ const moreLinks = [
     align-items: stretch;
     gap: 0.85rem;
     width: min(320px, 72vw);
-    margin-top: 0.75rem;
   }
 
   .btn {
@@ -134,7 +130,8 @@ const moreLinks = [
     letter-spacing: 0.62em;
     text-transform: uppercase;
     padding: 1rem 2rem;
-    border: 1px solid rgba(245, 239, 230, 0.38);
+    border: 1px solid rgba(232, 200, 140, 0.55);
+    background: rgba(14, 4, 4, 0.68);
     color: var(--ink);
     text-align: center;
     transition:
@@ -174,6 +171,9 @@ const moreLinks = [
   }
 
   .more {
+    align-self: center;
+    background: rgba(14, 4, 4, 0.68);
+    padding: 0.2rem 0.9rem;
     display: flex;
     justify-content: center;
     align-items: center;
