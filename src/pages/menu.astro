@@ -2,14 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import MenuPage from '../components/MenuPage.astro';
 import { grimm } from '../dinners';
-import { registerUrl, dinnerPrice, winePairingPrice } from '../site';
+import { registerUrl, dinnerPrice } from '../site';
 ---
 
 <Layout title="Supper Club — The Menu" tone="dark">
   <MenuPage dinner={grimm} backHref="/home">
     <div class="menu-register">
       <p class="menu-price">
-        ${dinnerPrice} per dinner &middot; Optional wine pairing +${winePairingPrice}
+        ${dinnerPrice} per dinner
       </p>
       <a class="menu-btn" href={registerUrl} target="_blank" rel="noopener noreferrer">Register</a>
     </div>

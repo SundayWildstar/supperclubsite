@@ -19,7 +19,6 @@ const moreLinks = [
   <main class="home">
     <Dust count={18} />
     <div class="cover">
-      <img class="mark" src="/white%20logo.svg" alt="Supper Club" width="595" height="842" decoding="async" />
       <!-- The cover art already shows the title, so keep it for screen readers only -->
       <h1 class="sr-only">Grimm's Fairy Tales</h1>
       <div class="actions">
@@ -51,6 +50,7 @@ const moreLinks = [
           }
         </nav>
       </div>
+      <img class="mark" src="/white%20logo.svg" alt="Supper Club" width="595" height="842" decoding="async" />
     </div>
   </main>
 </Layout>
@@ -88,12 +88,13 @@ const moreLinks = [
     z-index: 1;
   }
 
-  /* Positions are fractions of the cover: its title sits at roughly 17–30% */
+  /* Positions are fractions of the cover: its title sits at roughly 17–30%.
+     logo.svg's artwork fills only its middle 28–72%, hence the large box. */
   .mark {
     position: absolute;
     left: 50%;
-    top: -8.5%;
-    height: 36%;
+    top: 55%;
+    height: 40%;
     width: auto;
     transform: translateX(-50%);
     filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.7));
@@ -102,7 +103,7 @@ const moreLinks = [
   .cover > .actions {
     position: absolute;
     left: 50%;
-    bottom: 5%;
+    top: 34%;
     transform: translateX(-50%);
   }
 
