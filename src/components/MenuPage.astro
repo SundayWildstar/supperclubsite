@@ -22,7 +22,7 @@ const background = encodeURI(dinner.background ?? '/menu background.jpg');
             {course.name ? (
               <>
                 <h2 class="course-name">{course.name}</h2>
-                <p class="course-detail">{course.detail}</p>
+                {course.detail && <p class="course-detail">{course.detail}</p>}
               </>
             ) : (
               <span class="course-mark" aria-label={`Course ${course.num}, to be revealed`}>?</span>

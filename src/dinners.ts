@@ -17,7 +17,30 @@ export const grimm: Dinner = {
   slug: 'grimm',
   theme: "Grimm's Fairy Tales",
   background: '/grimm-background.jpg',
-  courses: [{ num: 'I' }, { num: 'II' }, { num: 'III' }, { num: 'IV' }, { num: 'V' }, { num: 'VI' }],
+  courses: [
+    {
+      num: 'I',
+      name: 'Hansel and Gretel',
+      detail: 'sourdough, sautéed morel, caramel-apple butter, garlic crumb',
+    },
+    {
+      num: 'II',
+      name: "Golden Goose's Egg",
+      detail: 'arpège egg, king crab, crème fraîche, chives',
+    },
+    {
+      num: 'III',
+      name: 'Sleeping Beauty',
+      detail: 'kataifi threads, shallot confit tart, gruyère custard, chamomile oil',
+    },
+    {
+      num: 'IV',
+      name: 'Rapunzel',
+      detail: 'pici, parmigiano reggiano, brown butter, roasted chestnut, guanciale',
+    },
+    { num: 'V', name: 'Red Riding Hood' },
+    { num: 'VI' },
+  ],
 };
 
 export const metamorphosis: Dinner = {
