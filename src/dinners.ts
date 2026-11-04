@@ -39,7 +39,7 @@ export const grimm: Dinner = {
       detail: 'pici, parmigiano reggiano, brown butter, roasted chestnut, guanciale',
     },
     { num: 'V', name: 'Red Riding Hood' },
-    { num: 'VI' },
+    { num: 'VI', name: 'Snow White' },
   ],
 };
 

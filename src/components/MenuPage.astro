@@ -22,7 +22,11 @@ const background = encodeURI(dinner.background ?? '/menu background.jpg');
             {course.name ? (
               <>
                 <h2 class="course-name">{course.name}</h2>
-                {course.detail && <p class="course-detail">{course.detail}</p>}
+                {course.detail ? (
+                  <p class="course-detail">{course.detail}</p>
+                ) : (
+                  <span class="course-mark" aria-label="Dishes to be revealed">?</span>
+                )}
               </>
             ) : (
               <span class="course-mark" aria-label={`Course ${course.num}, to be revealed`}>?</span>
@@ -147,8 +151,8 @@ const background = encodeURI(dinner.background ?? '/menu background.jpg');
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.4rem;
-    padding: 0.45rem 0;
+    gap: 0.35rem;
+    padding: 0.3rem 0;
   }
 
   .course-name {
