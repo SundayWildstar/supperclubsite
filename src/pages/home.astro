@@ -104,10 +104,13 @@ const moreLinks = [
     width: auto;
     transform: translateX(-50%);
     filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.7));
+    /* Its transparent padding overlaps the links above; let taps pass through */
+    pointer-events: none;
   }
 
   .cover > .actions {
     position: absolute;
+    z-index: 1;
     left: 50%;
     top: 39%;
     transform: translateX(-50%);
